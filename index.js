@@ -20,9 +20,15 @@ app.get("/outfit",(req,res)=>{
     })
 })
 
-app.post("/comments",(req,res)=>{
+app.post("/comments",async(req,res)=>{
     const id=uuid()
 const content=req.body.content
+
+if(!content){
+    return res.sendStatus(400)
+}
+
+await fs.mkdir('data/comments',{recursive:true})
     
     res.sendStatus(201)
 })
