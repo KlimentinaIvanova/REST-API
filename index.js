@@ -3,6 +3,7 @@ const express=require('express')
 const cors=require("cors")
 const _=require("lodash")
 const {v4: uuid}=require("uuid")
+const { formatWithOptions } = require("util")
 
 const app=express()
 
@@ -29,6 +30,7 @@ if(!content){
 }
 
 await fs.mkdir('data/comments',{recursive:true})
+await fs.writeFile(`data/comments/${id}.txt`,content)
     
     res.sendStatus(201)
 })
